@@ -18,8 +18,8 @@ jobs:
       
       - name: Setup Git
         run: |
-          git config --global user.name "AutoGreen Bot"
-          git config --global user.email "autogreen@example.com"
+          git config --global user.name "Nepomuk5665"
+          git config --global user.email "105591323+Nepomuk5665@users.noreply.github.com"
       
       - name: Make commits
         run: |
