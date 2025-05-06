@@ -1,0 +1,35 @@
+name: AutoGreen
+
+on:
+  schedule:
+    # Runs at 08:00 UTC (midnight PST) every day
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  auto-commit:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Git
+        run: |
+          git config --global user.name "AutoGreen Bot"
+          git config --global user.email "autogreen@example.com"
+      
+      - name: Make commits
+        run: |
+          # Create or update contributions file
+          TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+          echo "Contribution: ${TIMESTAMP}" > contributions.txt
+          
+          # Commit the change
+          git add contributions.txt
+          git commit -m "A commit a day keeps the Girlfriend away"
+          
+          # Push the commit
+          git push
